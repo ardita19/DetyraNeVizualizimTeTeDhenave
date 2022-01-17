@@ -11,8 +11,6 @@ df = pd.read_csv(
 
 #Data type based visualization
 
-
-
 # plt.hist(df['ProductShortName'])
 # plt.xticks(rotation=90)
 # plt.show()

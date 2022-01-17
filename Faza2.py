@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
 from sklearn.feature_extraction.text import CountVectorizer
 import json
 from sklearn.preprocessing import normalize
@@ -55,7 +56,6 @@ word_freq.sort_values(by='Freq', ascending=False).head(30)
 count_v = CountVectorizer()
 word_count_matrix = count_v.fit_transform(data['ReviewBody'].astype('U'))
 
-
 count_list = word_count_matrix.toarray().sum(axis=0)
 nrOfWordsPerTweet = word_count_matrix.toarray().sum(axis=1)
 plt.scatter(data['Price'], nrOfWordsPerTweet)
@@ -68,4 +68,11 @@ plt.show()
 #Outliers
 plt.boxplot(word_freq['frekuencaNe%'].head(50))
 plt.show()
+
+#Menjanimi i zbulimeve jo te sakta
+data['ReviewBody'] = data['ReviewBody'].map(lambda x: x.replace("'sound'",""))
+data['ReviewBody'] = data['ReviewBody'].map(lambda x: x.replace("'bass'",""))
+data['ReviewBody'] = data['ReviewBody'].map(lambda x: x.replace("'product'",""))
+print(data['ReviewBody'][0])
+
 #print(word_count_matrix.toarray())
